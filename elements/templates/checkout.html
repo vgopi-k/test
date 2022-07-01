@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./static/styles.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+    <title>Checkout</title>
+  </head>
+  <body>
+    <header>
+      <a href="/">Tesla Owner details</a>
+    </header>
+    <div class="container">
+      <h1>Checkout</h1>
+    </div>
+    <form class="checkout-form">
+      <div class="container">
+        <section>
+          <h2>Your details</h2>
+          <label>
+            Name
+            <input type="text" class="name-input" placeholder="Jenny Rosen" />
+          </label>
+          <label>
+            Email
+            <input
+              type="text"
+              class="email-input"
+              placeholder="jenny@gmail.com"
+            />
+          </label>
+        </section>
+        <section>
+          <h2>Shipping info</h2>
+          <label>
+            Address
+            <input
+              type="text"
+              class="address-line-1-input"
+              placeholder="123 First St."
+            />
+          </label>
+        </section>
+        <section>
+          <h2>Payment details</h2>
+          <br />
+          <!--div class="payment-element-container"></div-->
+          
+            <div id="payment-element">
+              <!-- Elements will create form elements here -->
+            </div>
+          </form>
+        </section>
+      </div>
+      <div class="well">
+        <div class="container">
+          <table class="order-summary">
+            <tr>
+              <td>Subtotal</td>
+              <td>$69,000</td>
+            </tr>
+            <tr>
+              <td>Delivery</td>
+              <td>Free</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td>$69,000</td>
+            </tr>
+          </table>
+          <div class="error-message" role="alert"></div>
+          <form id="payment-form">
+            <button id="submit" type="submit" class="submit-button">Place order</button>
+          </form>
+        </div>
+      </div>
+    </form> 
+    <script src="./static/index.js"></script>
+  </body>
+</html>

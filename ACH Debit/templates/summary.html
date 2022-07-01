@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./static/styles.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+    <title>Checkout</title>
+  </head>
+  <body>
+    <header>
+      <a href="/">Summary</a>
+    </header>
+    <div class="container">
+      <h1>Checkout</h1>
+    </div>
+    <form class="checkout-form">
+      <div class="container">
+        
+  
+      </div>
+      
+      <div class="well">
+        <div class="container">
+          <table class="order-summary">
+            <tr>
+              <td>Subtotal</td>
+              <td>$13.99</td>
+            </tr>
+            <tr>
+              <td>Delivery</td>
+              <td>Free</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td>$13.99</td>
+            </tr>
+          </table>
+          <div class="error-message" role="alert"></div>
+          <form id="payment-form" >
+            <button id="pay" type="submit" class="submit-button">Pay</button>
+          </form>
+        </div>
+      </div>
+    </form> 
+    <script src="./static/index.js"></script>
+  </body>
+</html>
