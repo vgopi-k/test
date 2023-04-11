@@ -31,7 +31,7 @@ const initPaymentElement = async () => {
   elements = stripe.elements(options);
     
   // Create and mount the Payment Element
-  const paymentElement = elements.create('payment');
+  const paymentElement = elements.create('payment', {disallowedCardBrands: ['amex']});
   paymentElement.mount('#payment-element');
 }
 

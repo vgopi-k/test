@@ -26,7 +26,28 @@ def success():
 @app.route("/create-account")
 def create_account():
   
-  connected_account = stripe.Account.create(type="standard")
+  connected_account = stripe.Account.create(
+    type="standard",
+    country="AU",
+    email="gk06@test.com",
+    #capabilities={
+    #  "card_payments": {"requested": True},
+    #  "transfers": {"requested": True},
+    #},
+    individual={
+      "first_name":"GK",
+      "last_name":"06",
+      "dob": {"day": "01", "month": "01", "year":"1991"},
+      "address": {"line1": "222 exhibition street", "postal_code": "3000", "city":"Melbourne", "state":"Victoria"},
+      "email":"gk06@test.com",
+      "phone":"+61 0 0000 0000"
+    },
+    business_type="individual",
+    business_profile={
+      "mcc": "5045",
+      "url": "thesofwarecompany.com"
+    },
+  )
   connected_account_link = stripe.AccountLink.create(
     account= connected_account.id,
     refresh_url="http://127.0.0.1:4248/success",
