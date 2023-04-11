@@ -10,7 +10,7 @@ app = Flask(__name__,
             static_url_path='',
             static_folder='')
 
-stripe.api_key = 'sk_test_51Kt4KODxwpebz7SelRrgOCUQDhGowcyqrHrJ9CnbKZBN6gi6TjBxzOu3JXz5jujXNhr3hSM5xiEp1xGtzbdeOJVP00NkUAC3Uu'
+stripe.api_key = 'sk_test_51L3UbWBreRIaDzD9sZ52uGzsz2xH27j5WZtto7Vv2o5jDUMJoY7opXkRURKtDHQaYFvUeDNfH8ZJZe4Hr5mYbi5C00rry4Urb7'
 
 @app.route("/")
 def hello():

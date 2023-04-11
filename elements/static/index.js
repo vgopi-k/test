@@ -2,7 +2,15 @@
 // See your keys here: https://dashboard.stripe.com/apikeys
 let clientSecret = null;
 let elements = null;
-const stripe = Stripe('pk_test_51Kt4KODxwpebz7SeUrDIkr8KiDLt7ji6VgRF2Ins7LgOhF5EZd5wx4pJJmDwXLtwxWQMZ7ZDp6c3xQCH5GOoYHYU00QRUxXMok');
+// US Account
+//const stripe = Stripe('pk_test_51L3UbWBreRIaDzD9TAXw5OE99EIHxpCGDQYBsgM2vmA6iimWfA0kMkqgff0RO9bgA5lr7U9JRL9TyjX1EWsSCQxj00Hx1GzaMu', {
+  //betas: ["express_checkout_element_beta_1"],
+//});
+
+// AU Account
+const stripe = Stripe('pk_test_51L2VvPHHzkSy25ARlDfycEwqVeBrIEM7iMo1uNCl2gOL22XTjUfib6wroIkKtF90KvH25eKkgum62OaPdxGwmqcY006TDHsSc4', {
+  betas: ["express_checkout_element_beta_1"],
+})
 
 const initPaymentElement = async () => {
   const serverResponse = await fetch('/secret').then((r) => r.json());
@@ -12,26 +20,39 @@ const initPaymentElement = async () => {
   // Render the Payment Element using the clientSecret
 
   clientSecret = serverResponse.client_secret;
+  //const loader = 'auto'
+
   const options = {
-      clientSecret: clientSecret,
-      loader: 'always',
-      appearance: {
-        theme: "default",
-        variables: {
-          borderRadius: "0",
-          fontFamily: '"Josefin Sans", sans-serif',
-          fontSmooth: "never",
-          colorTextPlaceholder: "#ccc",
-          colorPrimary: "#2d9fdb",
-        }
-      }
-    };
+    //clientSecret: clientSecret,
+    mode: 'payment',
+    amount: 1000,
+    currency: 'aud',
+    apperance: {
+      them: 'stripe',
+    }
+  }
     
   // Set up Stripe.js and Elements to use in checkout form, passing the client secret obtained in step 2
   elements = stripe.elements(options);
+
+  // Create Link Element
+  const linkAuthenticationElement = elements.create("linkAuthentication", {defaultValues: {email: "mail2gopi1988@gmail.com"}});
     
+  // Create Express Checkout Element
+  const expressCheckoutElement = elements.create('expressCheckout');
   // Create and mount the Payment Element
-  const paymentElement = elements.create('payment', {disallowedCardBrands: ['amex']});
+  const paymentElement = elements.create('payment', {
+    layout: {
+      type: 'accordion',
+      defaultCollapsed: false,
+      radios: true,
+      spacedAccordionItems: false
+    }
+  });
+
+  // Mount the Elements to their corresponding DOM node
+  //linkAuthenticationElement.mount('#link-authentication-element');
+  expressCheckoutElement.mount('#express-checkout-element');
   paymentElement.mount('#payment-element');
 }
 

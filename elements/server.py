@@ -7,9 +7,10 @@ import stripe
 from flask import Flask, redirect, render_template, jsonify
 
 app = Flask(__name__)
-
-stripe.api_key = 'sk_test_51L3UbWBreRIaDzD9sZ52uGzsz2xH27j5WZtto7Vv2o5jDUMJoY7opXkRURKtDHQaYFvUeDNfH8ZJZe4Hr5mYbi5C00rry4Urb7'
-
+# US Account
+# stripe.api_key = 'sk_test_51L3UbWBreRIaDzD9sZ52uGzsz2xH27j5WZtto7Vv2o5jDUMJoY7opXkRURKtDHQaYFvUeDNfH8ZJZe4Hr5mYbi5C00rry4Urb7'
+#AU Account
+stripe.api_key = 'sk_test_51L2VvPHHzkSy25ARCiZwss3UZOVAwzM7RcudofprNe4UudxsGq43le6iy63GSs8nPZo4CeR5mrTYfGg0rG1No99H00ZvzbiUWG'
 @app.route("/")
 def hello():
     return render_template('index.html')
@@ -26,7 +27,7 @@ def success():
 @app.route('/secret')
 def secret():
   intent = stripe.PaymentIntent.create( # ... Fetch or create the PaymentIntent
-    amount=6900000,
+    amount=100000,
     currency="aud",
     automatic_payment_methods={"enabled": True},
   )
